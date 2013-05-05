@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- TemplateBeginEditable name="doctitle" -->
+        <title>Registro Movilidad</title>
+        <!-- TemplateEndEditable -->
+        <!-- TemplateBeginEditable name="head" -->
+        <!-- TemplateEndEditable -->
+        <style type="text/css">
+
+            @import url("${facesContext.externalContext.requestContextPath}/resources/css/primefaces_overrides.css");
+            @import url("${facesContext.externalContext.requestContextPath}/resources/css/bootstrap_overrides.css");
+            @import url("${facesContext.externalContext.requestContextPath}/resources/css/custom.css");
+            
+        </style>
+        <script type="text/javascript" src="../resources/js/primefaces_locale_es.js" />
+       
+    </h:head>
+    <h:body>
+        <p:dialog modal="true" widgetVar="statusDialog" footer="Por favor espere" header="Cargando" draggable="false" closable="false" resizable="false">  
+            <div style="text-align: center;">
+                <p:graphicImage library="img" name="load.gif" />                                         
+            </div>                                        
+        </p:dialog>  
+
+        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();" />     
+
+        <f:view locale="es">
+            <div class="page">
+
+
+                <div class="header">
+                    <div class="logo">
+
+                    </div>
+                </div>                
+
+                <div class="container">
+
+                    <div class="content">
+                        <p:growl id="msgs" showDetail="false" sticky="false" life="5000" />  
+                        <div class="titulo-content">
+                            <ui:insert name="titulo-content">
+
+                            </ui:insert>
+                        </div>
+                        <ui:insert name="content">
+
+                        </ui:insert>
+                    </div>                    
+
+                    <div class="footer themeColor">
+                        <div class="footer">
+                            <h:graphicImage library="img" name="bg-footer.png" width="800" height="112" alt="Barranquilla florece para todos"/>
+                            <h:graphicImage library="img" name="logo-200.png" class="Y200" width="135" height="135" alt="Barranquilla 200 años"/>
+
+                        </div>                                    
+                    </div></div>
+            </div>
+        </f:view>
+    </h:body>
+</html>

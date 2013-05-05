@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- TemplateBeginEditable name="doctitle" -->
+        <title>app</title>
+        <!-- TemplateEndEditable -->
+        <!-- TemplateBeginEditable name="head" -->
+        <!-- TemplateEndEditable -->
+        <style type="text/css">
+
+            @import url("${facesContext.externalContext.requestContextPath}/resources/css/primefaces_overrides.css");
+            @import url("${facesContext.externalContext.requestContextPath}/resources/css/bootstrap_overrides.css");
+            @import url("${facesContext.externalContext.requestContextPath}/resources/css/custom.css");
+        </style>
+        <script type="text/javascript" src="../resources/js/primefaces_locale_es.js"/> 
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.class-logout').parent().css('float', 'right');
+            });
+
+        </script>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+        <meta name="Sistema Registro Usuarios Movilidad" content="Sistema Registro Usuarios Movilidad"></meta>
+        <meta name="Sistema Registro Usuarios Movilidad" content="HTML,CSS,XML,JavaScript"></meta>
+        <meta name="Alcaldia Distrital de Barranquilla" content=" Fotografías por: http://www.periodicoarteria.com/calendario24.html, http://www.minube.com/fotos/rincon/50772/433590, http://www.arteyfotografia.com.ar/13901/fotos/432345/ampliada/"></meta>
+    </h:head>
+
+    <h:body>
+        <p:dialog modal="true" widgetVar="statusDialog" footer="Por favor espere" header="Cargando" draggable="false" closable="false" resizable="false">  
+            <div style="text-align: center;">
+                <p:graphicImage library="img" name="load.gif" />                                         
+            </div>                                        
+        </p:dialog>  
+
+        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();" />     
+
+        <f:view locale="es">
+            <div class="page">
+
+                <div class="topper">
+                    <div class="header">
+                        <div class="header"><a href="#"><h:graphicImage library="img" name="logo-01.png" width="291" height="100" id="Insert_logo"   /></a> 
+                            <!-- end .header --></div>
+                        <div id="login">
+                            <h:link value="Inicio de sesión" outcome="/login" rendered="#{sessionController.usuario == null}" />
+                            <h:form>
+                                <p:commandButton rendered="#{sessionController.usuario!=null}" styleClass="btn-out" ajax="false" value="Salir" action="#{sessionController.logout()}" />  
+
+                            </h:form>
+                        </div>
+                        <div id="date">
+                            <h:outputText value="#{horaServidorController.fecha}">
+                                <f:convertDateTime dateStyle="full"/>
+                            </h:outputText>                        
+                        </div><div class="logo">
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+
+                    </div>
+
+                </div>                
+
+                <div class="container">                               
+
+                    <div class="content">
+                        <p:growl id="msgs" showDetail="false" sticky="false" life="10000" />  
+                        <div class="titulo-content">
+                            <ui:insert name="titulo-content">
+
+                            </ui:insert>
+                        </div>
+                        <ui:insert name="content">
+
+                        </ui:insert>
+                    </div>                    
+                </div>
+                <div class="footer">
+                    <!-- <h:graphicImage library="img" name="footer.png"   alt="Barranquilla 200 años"/> -->
+                  
+                        <p>Hackaton Barranquilla 2013. Nerdcore I - CuidAPP: Empodera al ciudadano para preservar activos fijos públicos.</p>
+                        <!-- end .footer -->
+                </div>  
+            </div>
+        </f:view>
+    </h:body>
+</html>

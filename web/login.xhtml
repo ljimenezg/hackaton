@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template/template.xhtml">
+
+
+
+
+        <ui:define name="titulo-content">
+            <h:outputText value="Iniciar sesión"/>
+        </ui:define>               
+
+        <ui:define name="content">       
+            <h:form rendered="#{sessionController.usuario == null}">
+                <div class="table-centered">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Identificación"/>
+                        <p:inputText value="#{loginController.documento}" autocomplete="false" maxlength="50" required="true" requiredMessage="El campo identificación es requerido" />
+                        <h:outputText value="Contraseña"/>
+                        <p:password value="#{loginController.clave}" required="true" requiredMessage="El campo contraseña es requerido" />
+                    </h:panelGrid> 
+                    <div class="button-centered">
+                        <h:panelGrid columns="2">
+                            <p:commandButton value="Ingreso" ajax="false" action="#{loginController.login()}" />
+                            <p:button value="Cancelar" outcome="/index" />
+                        </h:panelGrid>
+                    </div>
+                </div>
+
+            </h:form>
+            <h:form rendered="#{sessionController.usuario != null}">
+                <div>
+
+                    <h:commandLink value="Ya usted se encuentra autenticado" action="#{sessionController.redireccionar()}" immediate="true"/>
+                </div>                
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</html>
+
